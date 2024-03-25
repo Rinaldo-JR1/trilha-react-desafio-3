@@ -13,13 +13,14 @@ import {
   Column,
   TitleLogin,
   SubtitleLogin,
-  EsqueciText,
   CriarText,
   Row,
   Wrapper,
+  JaTenhoContaText,
+  FazerLoginText,
 } from "./styles";
 
-const Login = () => {
+const Cadastro = () => {
   const navigate = useNavigate();
 
   const {
@@ -41,53 +42,76 @@ const Login = () => {
         navigate("/feed");
         return;
       }
+
       alert("Usuário ou senha inválido");
-    } catch (e) {}
+    } catch (e) {
+      //TODO: HOUVE UM ERRO
+    }
   };
 
   console.log("errors", errors);
 
   return (
-    <div>
+    <>
       <Header />
       <Container>
         <Column>
           <Title>
-            A plataforma para você aprender com experts, dominar as principais
-            tecnologias e entrar mais rápido nas empresas mais desejadas.
+            A plataforma para você
+            <br /> aprender com experts, dominar as principais tecnologias e
+            entrar
+            <br /> mais rápido nas
+            <br /> empresas mais
+            <br /> desejadas.
           </Title>
         </Column>
         <Column>
           <Wrapper>
-            <TitleLogin>Faça seu cadastro</TitleLogin>
-            <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
+            <TitleLogin>Comece agora grátis</TitleLogin>
+            <SubtitleLogin>Crie sua conta e make the change._</SubtitleLogin>
             <form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                placeholder="Nome completo"
+                leftIcon={<MdEmail />}
+                name="NomeCompleto"
+                control={control}
+              />
               <Input
                 placeholder="E-mail"
                 leftIcon={<MdEmail />}
-                name="email"
+                name="E-mailCadastro"
                 control={control}
               />
               {errors.email && <span>E-mail é obrigatório</span>}
               <Input
                 type="password"
-                placeholder="Senha"
+                placeholder="Password"
                 leftIcon={<MdLock />}
                 name="senha"
                 control={control}
               />
               {errors.senha && <span>Senha é obrigatório</span>}
-              <Button title="Entrar" variant="secondary" type="submit" />
+              <Button
+                title="Criar minha conta"
+                variant="secondary"
+                type="submit"
+              />
             </form>
             <Row>
-              <EsqueciText>Esqueci minha senha</EsqueciText>
-              <CriarText>Criar Conta</CriarText>
+              <CriarText>
+                Ao clicar em "criar minha conta grátis", declaro que aceito as
+                Políticas de Privacidade e os Termos de Uso da DIO.
+              </CriarText>
             </Row>
+            <JaTenhoContaText>Já tenho conta.</JaTenhoContaText>
           </Wrapper>
+          <a href="/login" style={{ textDecoration: "none" }}>
+            <FazerLoginText>Fazer login</FazerLoginText>
+          </a>
         </Column>
       </Container>
-    </div>
+    </>
   );
 };
 
-export { Login };
+export { Cadastro };
